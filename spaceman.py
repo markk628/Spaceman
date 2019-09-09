@@ -1,5 +1,4 @@
 import random
-
 def load_word():
     '''
     A function that reads a text file of words and randomly selects one to use as the secret word
@@ -26,6 +25,8 @@ def is_word_guessed(secret_word, letters_guessed):
     '''
     # TODO: Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
     pass
+    i = input("Guess a letter: ")
+    # if i == secret_word
 
 def get_guessed_word(secret_word, letters_guessed):
     '''
@@ -83,4 +84,4 @@ def spaceman(secret_word):
 
 #These function calls that will start the game
 secret_word = load_word()
-spaceman(load_word())
+spaceman(secret_word)
