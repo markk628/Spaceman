@@ -47,7 +47,7 @@ def get_guessed_word(secret_word, letters_guessed):
         if i in letters_guessed:
             hidden += i
         else:
-            hidden += '_'
+            hidden += '_ '
     return hidden
     
 def is_guess_in_word(guess, secret_word):
@@ -71,14 +71,19 @@ def spaceman(secret_word):
     lives = 7
     letters_guessed = []
     while lives > 0 and not is_word_guessed(secret_word, letters_guessed):
-        if lives > 0:
-            guess = input("guess a letter: ")
-        else:
-            print("try again")
+        guess = input("guess a letter: ")
         if is_guess_in_word(guess, secret_word):
             letters_guessed.append(guess)
+            print("good job")
         else:
             lives -= 1
+            print(f"try again fam you got {lives} more lives")
+        print(get_guessed_word(secret_word, letters_guessed))
+    if is_word_guessed(secret_word, letters_guessed):
+        print("Cool you beat a game")
+    else:
+        print("you lost buddy")
+        
         
 
     #TODO: show the player information about the game according to the project spec
