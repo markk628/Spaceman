@@ -24,12 +24,18 @@ def is_word_guessed(secret_word, letters_guessed):
         bool: True only if all the letters of secret_word are in letters_guessed, False otherwise
     '''
     # TODO: Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
+    counter = 0
     for current_letter in secret_word:
         if current_letter in letters_guessed:
-            return True
-        elif current_letter not in letters_guessed:
+            counter +=1
+            if counter ==len(secret_word):
+                return True
+        else:
+                
             return False
-    return True # all letters in secret_word are in letters_guessed 
+ 
+    
+    # return True # all letters in secret_word are in letters_guessed 
 
 def get_guessed_word(secret_word, letters_guessed):
     '''
@@ -70,7 +76,7 @@ def spaceman(secret_word):
     '''
     lives = 7
     letters_guessed = []
-    while lives > 0 and not is_word_guessed(secret_word, letters_guessed):
+    while lives > 0 and is_word_guessed(secret_word, letters_guessed)==False:
         guess = input("guess a letter: ")
         if is_guess_in_word(guess, secret_word):
             letters_guessed.append(guess)
@@ -80,9 +86,9 @@ def spaceman(secret_word):
             print(f"try again fam you got {lives} more lives")
         print(get_guessed_word(secret_word, letters_guessed))
     if is_word_guessed(secret_word, letters_guessed):
-        print("Cool you beat a game")
+        print("Cool you beat the game")
     else:
-        print("you lost buddy")
+        print("you lost lol")
         
         
 
