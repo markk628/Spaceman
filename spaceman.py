@@ -92,7 +92,7 @@ def spaceman(secret_word):
 
         if guess not in letters_guessed:
             letters_guessed.append(guess)
-        elif is_guess_in_word(guess, secret_word):
+        if is_guess_in_word(guess, secret_word):
             letters_guessed.append(guess)
             print("good job")
         else:
