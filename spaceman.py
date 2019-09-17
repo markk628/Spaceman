@@ -55,7 +55,17 @@ def get_guessed_word(secret_word, letters_guessed):
         else:
             hidden += '_ '
     return hidden
-    
+
+def check_guessed(letters_guessed):
+    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+                'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    wrong = ''
+    for letter in letters:
+        if letter in letters_guessed:
+            wrong += '_ '
+        else:
+            wrong += letter
+    return print(wrong)
 def is_guess_in_word(guess, secret_word):
     '''
     A function to check if the guessed letter is in the secret word
@@ -77,7 +87,10 @@ def spaceman(secret_word):
     lives = 7
     letters_guessed = []
     while lives > 0 and is_word_guessed(secret_word, letters_guessed)==False:
-        guess = input("guess a letter: ")
+        guess = str.lower(input("guess a letter: "))
+
+        if guess not in letters_guessed:
+            letters_guessed.append(guess)
         if is_guess_in_word(guess, secret_word):
             letters_guessed.append(guess)
             print("good job")
@@ -85,11 +98,12 @@ def spaceman(secret_word):
             lives -= 1
             print(f"try again fam you got {lives} more lives")
         print(get_guessed_word(secret_word, letters_guessed))
+        print(check_guessed(letters_guessed))   
     if is_word_guessed(secret_word, letters_guessed):
         print("Cool you beat the game")
     else:
         print("you lost lol")
-        
+         
         
 
     #TODO: show the player information about the game according to the project spec
@@ -110,3 +124,9 @@ def spaceman(secret_word):
 #These function calls that will start the game
 secret_word = load_word()
 spaceman(secret_word)
+
+choice = input("Would you like to play again (Y/N)?: ")
+while choice.upper() == "Y":
+    secret_word = load_word()
+    spaceman(secret_word)
+    choice = input("Again (Y/N)?: ")
