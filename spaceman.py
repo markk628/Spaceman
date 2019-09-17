@@ -65,7 +65,8 @@ def check_guessed(letters_guessed):
             wrong += '_ '
         else:
             wrong += letter
-    return print(wrong)
+    return wrong
+
 def is_guess_in_word(guess, secret_word):
     '''
     A function to check if the guessed letter is in the secret word
@@ -91,7 +92,7 @@ def spaceman(secret_word):
 
         if guess not in letters_guessed:
             letters_guessed.append(guess)
-        if is_guess_in_word(guess, secret_word):
+        elif is_guess_in_word(guess, secret_word):
             letters_guessed.append(guess)
             print("good job")
         else:
