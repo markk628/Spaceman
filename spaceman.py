@@ -123,11 +123,28 @@ def spaceman(secret_word):
 
 
 #These function calls that will start the game
-secret_word = load_word()
-spaceman(secret_word)
+# secret_word = load_word()
+# spaceman(secret_word)
 
-choice = input("Would you like to play again (Y/N)?: ")
-while choice.upper() == "Y":
-    secret_word = load_word()
-    spaceman(secret_word)
-    choice = input("Again (Y/N)?: ")
+# choice = input("Would you like to play again (Y/N)?: ")
+# while choice.upper() == "Y":
+#     secret_word = load_word()
+#     spaceman(secret_word)
+#     choice = input("Again (Y/N)?: ")
+
+def test_is_word_guessed():
+    assert is_word_guessed('hello', ['h', 'e', 'l', 'l', 'o']) == True
+    assert is_word_guessed('hello', 'h') == False
+    assert is_word_guessed('hello', ['t', 'j', 'e']) == False
+
+def test_is_guess_in_word():
+    assert is_guess_in_word('t', 'table') == True
+    assert is_guess_in_word('s', 'ball') == False
+    assert is_guess_in_word('$', 'apple') == False
+
+def test_get_guessed_word():
+    assert get_guessed_word('apple', ['a', 'p', 'p', 'l', 'e']) == 'apple'
+    assert get_guessed_word('test', ['f', 'a']) == '_ _ _ _ '
+    assert get_guessed_word('eagle', 'e') == 'e_ _ _ e'
+    assert get_guessed_word('octopus', ['e', 'c', 'w']) == '_ c_ _ _ _ _ '
+
